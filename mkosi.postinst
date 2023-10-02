@@ -1,0 +1,10 @@
+#!/bin/sh
+# SPDX-License-Identifier: LGPL-2.1-or-later
+
+if command -v authselect >/dev/null; then
+    authselect select minimal
+
+    if authselect list-features minimal | grep -q "with-homed"; then
+        authselect enable-feature with-homed
+    fi
+fi
