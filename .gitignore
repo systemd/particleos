@@ -1,6 +1,5 @@
-/mkosi.conf
+mkosi.local.conf
 mkosi.output/
 mkosi.cache/
 mkosi.key
 mkosi.crt
-*.mkosi-tmp*

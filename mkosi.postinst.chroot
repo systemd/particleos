@@ -2,10 +2,6 @@
 # SPDX-License-Identifier: LGPL-2.1-or-later
 set -e
 
-if [ "${container:-}" != "mkosi" ]; then
-    exec mkosi-chroot "$SCRIPT" "$@"
-fi
-
 if command -v authselect >/dev/null; then
     authselect select minimal
 
