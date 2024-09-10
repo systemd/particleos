@@ -1,1 +1,4 @@
-1
+#!/bin/bash
+set -e
+
+date +%Y%m%d%H%M%S
