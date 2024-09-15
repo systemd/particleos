@@ -6,7 +6,7 @@ mkdir -p "$BUILDROOT/etc/extension-release.d"
 
 . "$BUILDROOT/usr/lib/os-release"
 
-cat >"$BUILDROOT/etc/extension-release.d/extension-release.etc" <<EOF
+cat >"$BUILDROOT/etc/extension-release.d/extension-release.ParticleOS" <<EOF
 ID=$ID
 VERSION_ID=$VERSION_ID
 CONFEXT_ID=$IMAGE_ID
