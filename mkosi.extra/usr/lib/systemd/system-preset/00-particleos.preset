@@ -1,0 +1,10 @@
+# SPDX-License-Identifier: LGPL-2.1-or-later
+
+# Make sure we have networking available.
+enable systemd-networkd.service
+enable systemd-networkd-wait-online.service
+enable systemd-resolved.service
+
+# These are not enabled by default in the default systemd preset.
+enable systemd-timesyncd.service
+enable systemd-homed-firstboot.service
