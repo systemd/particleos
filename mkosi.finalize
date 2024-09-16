@@ -2,8 +2,6 @@
 # SPDX-License-Identifier: LGPL-2.1-or-later
 set -e
 
-mv "$BUILDROOT/etc" "$BUILDROOT/usr/etc"
-ln -s ../usr/etc "$BUILDROOT/etc"
-
-rm "$BUILDROOT/usr/etc/machine-id"
-ln -s ../../var/lib/machine-id "$BUILDROOT/usr/etc/machine-id"
+cp --archive --no-target-directory "$BUILDROOT/etc" "$BUILDROOT/usr/share/factory/etc"
+rm "$BUILDROOT/usr/share/factory/etc/machine-id"
+ln -s /var/lib/machine-id "$BUILDROOT/usr/share/factory/etc/machine-id"
