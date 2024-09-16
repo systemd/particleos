@@ -2,28 +2,8 @@
 # SPDX-License-Identifier: LGPL-2.1-or-later
 set -e
 
-mkdir -p "$BUILDROOT/etc/extension-release.d"
+mv "$BUILDROOT/etc" "$BUILDROOT/usr/etc"
+ln -s ../usr/etc "$BUILDROOT/etc"
 
-. "$BUILDROOT/usr/lib/os-release"
-
-cat >"$BUILDROOT/etc/extension-release.d/extension-release.ParticleOS" <<EOF
-ID=$ID
-VERSION_ID=$VERSION_ID
-CONFEXT_ID=$IMAGE_ID
-CONFEXT_VERSION_ID=$IMAGE_VERSION
-CONFEXT_SCOPE=system
-EOF
-
-# The machine ID is local system state so it should never be in a
-# confext. Even when it contains "uninitialized", it would hide the
-# actual machine ID so we remove it to make sure it doesn't end up
-# in the confext.
-rm -f "$BUILDROOT/etc/machine-id"
-
-mkdir "$BUILDROOT/usr/lib/confexts"
-systemd-repart \
-        --make-ddi=confext \
-        --copy-source="$BUILDROOT" \
-        --certificate=mkosi.crt \
-        --private-key=mkosi.key \
-        "$BUILDROOT/usr/lib/confexts/ParticleOS.raw"
+rm "$BUILDROOT/usr/etc/machine-id"
+ln -s ../../var/lib/machine-id "$BUILDROOT/usr/etc/machine-id"
