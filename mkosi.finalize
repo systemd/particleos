@@ -2,6 +2,6 @@
 # SPDX-License-Identifier: LGPL-2.1-or-later
 set -e
 
-cp --archive --no-target-directory "$BUILDROOT/etc" "$BUILDROOT/usr/share/factory/etc"
-rm "$BUILDROOT/usr/share/factory/etc/machine-id"
-ln -s /var/lib/machine-id "$BUILDROOT/usr/share/factory/etc/machine-id"
+# Capture the entirety of /etc in /usr/share/factory/etc so we can use
+# systemd-tmpfiles to symlink individual directories from it to /etc.
+cp --archive --no-target-directory --update=none "$BUILDROOT/etc" "$BUILDROOT/usr/share/factory/etc"
