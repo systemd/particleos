@@ -17,3 +17,12 @@ if command -v authselect >/dev/null; then
         authselect enable-feature with-homed
     fi
 fi
+
+if [[ -d /etc/pam.d ]]; then
+    find /etc/pam.d -mindepth 1 -exec mv {} /usr/lib/pam.d \;
+    rmdir /etc/pam.d
+fi
+
+# Get rid of obsolete stuff in the pam stack.
+sed --in-place '/pam_shells.so/d' /usr/lib/pam.d/system-login
+sed --in-place '/pam_securetty.so/d' /usr/lib/pam.d/remote
