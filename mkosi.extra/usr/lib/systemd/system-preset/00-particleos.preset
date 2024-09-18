@@ -5,6 +5,12 @@ enable systemd-networkd.service
 enable systemd-networkd-wait-online.service
 enable systemd-resolved.service
 
+# Enable NetworkManager as well for desktop environments. systemd-networkd won't
+# manage any interfaces by default and so shouldn't conflict with
+# NetworkManager.
+enable NetworkManager.service
+enable NetworkManager-wait-online.service
+
 # These are not enabled by default in the default systemd preset.
 enable systemd-timesyncd.service
 enable systemd-homed-firstboot.service
