@@ -16,3 +16,6 @@ EOF
 cat >>"$BUILDROOT/usr/lib/tmpfiles.d/etc.conf" <<EOF
 L /etc/pacman.conf
 EOF
+
+mkdir -p "$BUILDROOT"/usr/share/p11-kit/modules
+echo /usr/lib/libykcs11.so >"$BUILDROOT/usr/share/p11-kit/modules/ykcs11.module"
