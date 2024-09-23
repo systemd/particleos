@@ -18,7 +18,7 @@ L /etc/pacman.conf
 EOF
 
 mkdir -p "$BUILDROOT"/usr/share/p11-kit/modules
-echo /usr/lib/libykcs11.so >"$BUILDROOT/usr/share/p11-kit/modules/ykcs11.module"
+echo "module: /usr/lib/libykcs11.so" >"$BUILDROOT/usr/share/p11-kit/modules/ykcs11.module"
 
 rm "$BUILDROOT/usr/lib/pcsc/drivers/ifd-ccid.bundle/Contents/Info.plist"
 mv "$BUILDROOT/etc/libccid_Info.plist" "$BUILDROOT/usr/lib/pcsc/drivers/ifd-ccid.bundle/Contents/Info.plist"
