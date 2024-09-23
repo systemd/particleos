@@ -4,3 +4,15 @@
 rm -f "$BUILDROOT/usr/lib/tmpfiles.d/arch.conf"
 rm -f "$BUILDROOT/usr/lib/tmpfiles.d/audit.conf"
 rm -f "$BUILDROOT/usr/lib/tmpfiles.d/openssh.conf"
+
+mkdir "$BUILDROOT/usr/lib/pacman"
+mv "$BUILDROOT/var/lib/pacman/local" "$BUILDROOT/usr/lib/pacman"
+
+cat >"$BUILDROOT/etc/pacman.conf" <<EOF
+[options]
+DBPath = /usr/lib/pacman
+EOF
+
+cat >>"$BUILDROOT/usr/lib/tmpfiles.d/etc.conf" <<EOF
+L /etc/pacman.conf
+EOF
