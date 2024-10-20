@@ -1,0 +1,10 @@
+# SPDX-License-Identifier: LGPL-2.1-or-later
+
+[Unit]
+Before=user.slice
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ConditionFirstBoot=yes
+ExecStart=systemctl preset-all --global
