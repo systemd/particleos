@@ -15,4 +15,7 @@ enable NetworkManager-wait-online.service
 enable systemd-timesyncd.service
 enable systemd-homed-firstboot.service
 
+# Disable avahi in favor of resolved
+disable avahi.*
+
 enable pcscd.service
