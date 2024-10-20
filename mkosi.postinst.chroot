@@ -24,5 +24,5 @@ if [[ -d /etc/pam.d ]]; then
 fi
 
 # Get rid of obsolete stuff in the pam stack.
-[[ -f /usr/lib/pam.d/system-login ]] && sed --in-place '/pam_shells.so/d' /usr/lib/pam.d/system-login
-[[ -f /usr/lib/pam.d/remote ]] && sed --in-place '/pam_securetty.so/d' /usr/lib/pam.d/remote
+find /usr/lib/pam.d/ -mindepth 1 -exec sed --in-place '/pam_shells.so/d' {} \;
+find /usr/lib/pam.d/ -mindepth 1 -exec sed --in-place '/pam_securetty.so/d' {} \;
