@@ -22,11 +22,27 @@ To update the system after installation, you clone the ParticleOS repository
 or your fork of it and run `mkosi -ff sysupdate update --reboot` which will
 update the system using `systemd-sysupdate` and then reboot.
 
-There is no installer yet for ParticleOS. To install it, build the ParticleOS
-image from another Linux system and `dd` it to the disk of the system you want
-to run ParticleOS on.
+## Installation
 
-# Configuring systemd-homed after installation
+Before installing ParticleOS, make sure that Secure Boot is in setup mode on the
+target system. The Secure Boot mode can be configured in the UEFI firmware
+interface of the target system. If there's an existing Linux installation on the
+target system already, run `systemctl reboot --firmware-setup` to reboot into
+the UEFI firmware interface. At the same time, make sure the UEFI firmware
+interface is password protected so an attacker cannot just disable Secure Boot
+again.
+
+To install ParticleOS with a USB drive, first build the image on an existing
+Linux system as described above. Then, burn it to the USB drive with
+`mkosi burn /dev/<usb>`. Once burned to the USB drive, plug the USB drive into
+the system onto which you'd like to install ParticleOS and boot into the USB
+drive via the firmware. Then, boot into the "Installer" UKI profile. When you
+end up in the root shell, run
+`systemd-repart --dry-run=no --empty=force /dev/<drive>` to install ParticleOS
+to the system's drive. Finally, reboot into the target drive (not the USB) and
+the regular profile (not the installer one) to complete the installation.
+
+## Configuring systemd-homed after installation
 
 After installing ParticleOS and logging into your systemd-homed managed user,
 run the following to configure systemd-homed for the best experience:
