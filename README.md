@@ -55,7 +55,7 @@ homectl update \
     --extra-luks-mount-options "user_subvol_rm_allowed,compress=zstd:1"
 ```
 
-Disabling the auto resize mode avoids slow system boot and shutdown. Disabling
+Disabling the auto resize mode avoids slow system boot and shutdown. Enabling
 LUKS discard makes sure the home directory doesn't become inaccessible because
 systemd-homed is unable to resize the home directory. The extra LUKS mount
 options are BTRFS mount options to make image builds with `mkosi` faster by
