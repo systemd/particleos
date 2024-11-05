@@ -3,4 +3,4 @@
 set -e
 set -o nounset
 
-rm -f "$OUTPUTDIR"/ParticleOS_*
+rm -rf "$OUTPUTDIR"/ParticleOS_*
