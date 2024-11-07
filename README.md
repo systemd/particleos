@@ -22,6 +22,33 @@ To update the system after installation, you clone the ParticleOS repository
 or your fork of it and run `mkosi -ff sysupdate update --reboot` which will
 update the system using `systemd-sysupdate` and then reboot.
 
+## Building systemd from source
+
+Sometimes ParticleOS adopts systemd features as soon as they get merged into
+systemd without waiting for an official release. As a result it's recommended to
+build systemd from source when building ParticleOS to make sure all required
+features are supported:
+
+```sh
+git clone https://github.com/systemd/systemd
+cd systemd
+mkosi -t none
+```
+
+Then write the following to `mkosi.local.conf` in the ParticleOS repository to
+use the artifacts from the systemd repository built by mkosi in ParticleOS:
+
+```conf
+[Content]
+PackageDirectories=../systemd/build/mkosi.builddir/%d~%r~%a
+
+[Host]
+ExtraSearchPaths=../systemd/build/mkosi.builddir/%d~%r~%a
+```
+
+To build a newer systemd, run `git pull` in the systemd repository followed by
+ `mkosi -t none`.
+
 ## Installation
 
 Before installing ParticleOS, make sure that Secure Boot is in setup mode on the
