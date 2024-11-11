@@ -1,6 +1,7 @@
-#!/bin/bash
+#!/bin/sh
 # SPDX-License-Identifier: LGPL-2.1-or-later
 set -e
 set -o nounset
 
-rm -rf "$OUTPUTDIR"/ParticleOS_*
+OUTPUT="$(jq --raw-output .Output <"$MKOSI_CONFIG")"
+rm -rf "$OUTPUTDIR"/"${OUTPUT:?}"*
