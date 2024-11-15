@@ -1,9 +1,14 @@
 # SPDX-License-Identifier: LGPL-2.1-or-later
 
 [Unit]
-Before=user.slice
 ConditionFirstBoot=yes
 ConditionPathIsReadWrite=/etc
+
+DefaultDependencies=no
+
+Before=basic.target
+Conflicts=shutdown.target
+Before=shutdown.target
 
 [Service]
 Type=oneshot
@@ -11,4 +16,4 @@ RemainAfterExit=yes
 ExecStart=systemctl preset-all --global
 
 [Install]
-WantedBy=multi-user.target
+WantedBy=basic.target
