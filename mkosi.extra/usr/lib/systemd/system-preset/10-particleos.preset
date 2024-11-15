@@ -20,6 +20,3 @@ disable avahi.*
 
 enable pcscd.service
 enable power-profiles-daemon.service
-
-# Our own service to run systemctl preset --global.
-enable preset-global.service
