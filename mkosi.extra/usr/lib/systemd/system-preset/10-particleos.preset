@@ -19,3 +19,4 @@ enable systemd-homed-firstboot.service
 disable avahi.*
 
 enable pcscd.service
+enable power-profiles-daemon.service
