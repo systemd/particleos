@@ -9,3 +9,6 @@ ConditionPathIsReadWrite=/etc
 Type=oneshot
 RemainAfterExit=yes
 ExecStart=systemctl preset-all --global
+
+[Install]
+WantedBy=multi-user.target
