@@ -3,5 +3,4 @@
 set -e
 set -o nounset
 
-OUTPUT="$(jq --raw-output .Output <"$MKOSI_CONFIG")"
-rm -rf "$OUTPUTDIR"/"${OUTPUT:?}"*
+rm -rf "$OUTPUTDIR"/"$IMAGE_ID"*
