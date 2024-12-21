@@ -3,19 +3,8 @@
 set -e
 
 if command -v authselect >/dev/null; then
-    # authselect 1.5.0 renamed the minimal profile to the local profile without keeping backwards compat so
-    # let's use the new name if it exists.
-    if [ -d /usr/share/authselect/default/local ]; then
-        PROFILE=local
-    else
-        PROFILE=minimal
-    fi
-
-    authselect select "$PROFILE"
-
-    if authselect list-features "$PROFILE" | grep -q "with-homed"; then
-        authselect enable-feature with-homed
-    fi
+    authselect select local
+    authselect enable-feature with-systemd-homed
 fi
 
 if [[ -d /etc/pam.d ]]; then
