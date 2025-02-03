@@ -43,7 +43,7 @@ use the artifacts from the systemd repository built by mkosi in ParticleOS:
 PackageDirectories=../systemd/build/mkosi.builddir/%d~%r~%a
 
 [Host]
-ExtraSearchPaths=../systemd/build/mkosi.builddir/%d~%r~%a
+ExtraSearchPaths=../systemd/build
 ```
 
 To build a newer systemd, run `git pull` in the systemd repository followed by
