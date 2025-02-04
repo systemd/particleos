@@ -87,3 +87,9 @@ LUKS discard makes sure the home directory doesn't become inaccessible because
 systemd-homed is unable to resize the home directory. The extra LUKS mount
 options are BTRFS mount options to make image builds with `mkosi` faster by
 compressing data on disk and allowing users to delete subvolumes.
+
+## Default root password and user when booting in a virtual machine
+
+If you boot ParticleOS in a virtual machine using `mkosi vm`, the root password
+is automatically set to `particleos` and a default user `particleos` with password
+`particleos` is created as well.
