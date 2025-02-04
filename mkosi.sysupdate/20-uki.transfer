@@ -16,7 +16,7 @@ PathRelativeTo=boot
 MatchPattern=%M_@v+@l-@d.efi \
              %M_@v+@l.efi \
              %M_@v.efi
-Mode=0444
+Mode=0600
 TriesLeft=3
 TriesDone=0
 InstancesMax=2
