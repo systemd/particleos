@@ -32,8 +32,8 @@ features are supported:
 ```sh
 git clone https://github.com/systemd/systemd
 cd systemd
-mkosi -f sandbox meson setup build
-mkosi -f sandbox meson compile -C build
+mkosi -f sandbox -- meson setup build
+mkosi -f sandbox -- meson compile -C build
 mkosi -t none
 ```
 
