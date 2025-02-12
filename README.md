@@ -32,6 +32,8 @@ features are supported:
 ```sh
 git clone https://github.com/systemd/systemd
 cd systemd
+mkosi -f sandbox meson setup build
+mkosi -f sandbox meson compile -C build
 mkosi -t none
 ```
 
@@ -40,14 +42,17 @@ use the artifacts from the systemd repository built by mkosi in ParticleOS:
 
 ```conf
 [Content]
-PackageDirectories=../systemd/build/mkosi.builddir/%d~%r~%a
+PackageDirectories=../systemd/build/mkosi.builddir/<distribution>~<release>~<arch>
 
 [Runtime]
 ExtraSearchPaths=../systemd/build
 ```
 
+Make sure the distribution and release in `mkosi.local.conf` are identical in the
+systemd checkout and the particleos checkout.
+
 To build a newer systemd, run `git pull` in the systemd repository followed by
- `mkosi -t none`.
+ `mkosi -f sandbox meson compile -C build` and `mkosi -t none`.
 
 ## Installation
 
