@@ -44,7 +44,7 @@ use the artifacts from the systemd repository built by mkosi in ParticleOS:
 [Content]
 PackageDirectories=../systemd/build/mkosi.builddir/<distribution>~<release>~<arch>
 
-[Runtime]
+[Build]
 ExtraSearchPaths=../systemd/build
 ```
 
