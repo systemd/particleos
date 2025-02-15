@@ -7,7 +7,7 @@ ProtectVersion=%A
 Type=regular-file
 Path=/
 PathRelativeTo=explicit
-MatchPattern=%M_@v.efi
+MatchPattern=%M-@v-%a.efi
 
 [Target]
 Type=regular-file
