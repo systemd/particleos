@@ -85,7 +85,7 @@ homectl update \
     --auto-resize-mode=off \
     --disk-size=max \
     --luks-discard=on \
-    --extra-luks-mount-options "user_subvol_rm_allowed,compress=zstd:1"
+    --luks-extra-mount-options "user_subvol_rm_allowed,compress=zstd:1"
 ```
 
 Disabling the auto resize mode avoids slow system boot and shutdown. Enabling
