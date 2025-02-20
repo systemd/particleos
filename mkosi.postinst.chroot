@@ -15,3 +15,9 @@ fi
 # Get rid of obsolete stuff in the pam stack.
 find /usr/lib/pam.d/ -mindepth 1 -exec sed --in-place '/pam_shells.so/d' {} \;
 find /usr/lib/pam.d/ -mindepth 1 -exec sed --in-place '/pam_securetty.so/d' {} \;
+
+# Fedora disables the userdb ssh dropin by default, but helpfully leaves it available in
+# the package so that we can just symlink it to a name that will be picked up by systemd-tmpfiles.
+if [[ -f /usr/lib/tmpfiles.d/20-systemd-userdb.conf.example ]]; then
+    ln --symbolic 20-systemd-userdb.conf.example /usr/lib/tmpfiles.d/20-systemd-userdb.conf
+fi
