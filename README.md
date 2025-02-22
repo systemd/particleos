@@ -12,14 +12,15 @@ distribution is used as the base and which packages are installed into the
 image.
 
 The ParticleOS image is built using [mkosi](https://github.com/systemd/mkosi).
-To build the image, run `mkosi -d <distribution> -f` from the ParticleOS
+To build the image, run `mkosi -d <distribution> --profile <profile> -f` from the ParticleOS
 repository. Currently both `arch` and `fedora` are supported distributions.
 Implementing support for a new distribution (that's already supported in mkosi)
 is as simple as writing the necessary config files to install the required
-packages for that distribution.
+packages for that distribution. Optionally, profiles can be selected to add a set of packages,
+currently `desktop,kde` and `desktop,gnome` are supported.
 
 To update the system after installation, you clone the ParticleOS repository
-or your fork of it and run `mkosi -ff sysupdate update --reboot` which will
+or your fork of it and run `mkosi -ff sysupdate -- update --reboot` which will
 update the system using `systemd-sysupdate` and then reboot.
 
 ## Building systemd from source
@@ -54,6 +55,23 @@ systemd checkout and the particleos checkout.
 To build a newer systemd, run `git pull` in the systemd repository followed by
  `mkosi -f sandbox meson compile -C build` and `mkosi -t none`.
 
+## Signing keys
+
+ParticleOS images are signed for Secure Boot with the user's keys. To generate a new key,
+run `mkosi genkey`. The key must be stored safely, it will be required to sign updates.
+
+The key can be stored in a smartcard. Then you have to set the key in `mkosi.local.conf`:
+
+```
+[Validation]
+SecureBootKey=pkcs11:object=Private key 1;type=private
+SecureBootKeySource=provider:pkcs11
+SignExpectedPcrKey=pkcs11:object=Private key 1;type=private
+SignExpectedPcrKeySource=provider:pkcs11
+VerityKey=pkcs11:object=Private key 1;type=private
+VerityKeySource=provider:pkcs11
+```
+
 ## Installation
 
 Before installing ParticleOS, make sure that Secure Boot is in setup mode on the
@@ -74,6 +92,20 @@ end up in the root shell, run
 to install ParticleOS to the system's drive. Finally, reboot into the target
 drive (not the USB) and the regular profile (not the installer one) to complete
 the installation.
+
+## LUKS recovery key
+
+systemd doesn't support adding a recovery key to a partition enrolled with a token
+only (tpm/fido2). It is possible to use cryptenroll to add a recovery password
+to the root partition: `cryptsetup luksAddKey --token-type systemd-tpm2 /dev/<id>`
+
+## Firmwares
+
+Only firmwares that are dependencies of a kernel module are included, but some
+modules don't declare their dependencies properly. Dependencies of a module can be
+found with `modinfo`. If you experience missing firmwares, you should report
+this to the module maintainer. `FirmwareInclude=` can be added in `mkosi.local.conf`
+to include the firmware regardless of whether a module depends on it.
 
 ## Configuring systemd-homed after installation
 
