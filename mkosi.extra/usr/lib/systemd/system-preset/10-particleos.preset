@@ -26,3 +26,7 @@ enable preset-global.service
 
 # Should be enabled manually by the user after first boot.
 disable gdm.service
+
+# Prefer socket activated SSH over daemon SSH
+disable sshd.service
+enable sshd.socket
