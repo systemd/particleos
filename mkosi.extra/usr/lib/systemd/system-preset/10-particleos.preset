@@ -29,4 +29,6 @@ disable gdm.service
 
 # Prefer socket activated SSH over daemon SSH
 disable sshd.service
+disable ssh.service
 enable sshd.socket
+enable ssh.socket
