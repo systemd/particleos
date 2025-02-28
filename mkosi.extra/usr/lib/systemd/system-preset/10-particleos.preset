@@ -32,3 +32,4 @@ disable sshd.service
 disable ssh.service
 enable sshd.socket
 enable ssh.socket
+enable sshd-keygen.service
