@@ -1,6 +1,12 @@
-#!/bin/sh
+#!/bin/bash
 # SPDX-License-Identifier: LGPL-2.1-or-later
 set -e
+
+# These workarounds are for Fedora, and break logins in Debian/Ubuntu
+source /etc/os-release
+if [ "$ID" = "debian" ] || [ "$ID_LIKE" = "debian" ]; then
+    exit 0
+fi
 
 if command -v authselect >/dev/null; then
     authselect select local
@@ -10,6 +16,9 @@ fi
 if [[ -d /etc/pam.d ]]; then
     find /etc/pam.d -mindepth 1 -exec mv {} /usr/lib/pam.d \;
     rmdir /etc/pam.d
+    if [[ -f /etc/pam.conf ]]; then
+        mv /etc/pam.conf /usr/lib/
+    fi
 fi
 
 # Get rid of obsolete stuff in the pam stack.
