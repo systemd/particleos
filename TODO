@@ -1,0 +1,18 @@
+posted:
+• homed adopt (posted)
+• factory reset (posted)
+• image policy (posted)
+
+todo:
+• https boot
+• luks recovery key prompt
+• installer tool
+• hostnamectl should show image id
+• hostname should start from image id, not distro name
+• make sure reset and so on are never candidates for auto selection in menu
+• boot counting
+• in live mode: mark root block device read-only on block level
+• pcrlock
+• sysupdate from http
+• as for comfirmation before factory reset
+• pkcs7 for image downloads, rather than gpg
