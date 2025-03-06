@@ -1,17 +1,21 @@
 posted:
 • homed adopt
 • image policy
+• hostnamectl should show image id
 
 todo:
-• https boot
 • luks recovery key firstboot prompt
 • installer tool (wrapping repart, bootctl install, tpm2-clear, reboot)
-• hostnamectl should show image id
-• hostname should start from image id, not distro name
 • make sure reset and so on are never candidates for auto selection in menu
 • boot counting
-• in live mode: mark root block device read-only on block level
 • pcrlock
 • sysupdate from http
+• ask for confirmation before factory reset
+• firstboot: when asking for kbd mapping, preselect uefi firmware default
+• firstboot: when asking for hostname, preselect default hostname
 • ask for comfirmation before factory reset
+
+later:
+• in live mode: mark root block device read-only on block level
 • pkcs7 for image downloads, rather than gpg
+• https boot
