@@ -53,7 +53,7 @@ Make sure the distribution and release in `mkosi.local.conf` are identical in th
 systemd checkout and the particleos checkout.
 
 To build a newer systemd, run `git pull` in the systemd repository followed by
- `mkosi -f sandbox meson compile -C build` and `mkosi -t none`.
+ `mkosi -f sandbox -- meson compile -C build` and `mkosi -t none`.
 
 ## Signing keys
 
