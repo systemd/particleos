@@ -1,0 +1,9 @@
+# SPDX-License-Identifier: LGPL-2.1-or-later
+
+[systemd]
+name=systemd packages built from upstream main (Fedora_Rawhide)
+type=rpm-md
+baseurl=https://download.opensuse.org/repositories/system:/systemd/Fedora_Rawhide/
+gpgcheck=1
+gpgkey=file:///usr/share/pki/rpm-gpg/systemd.gpg
+enabled=1
