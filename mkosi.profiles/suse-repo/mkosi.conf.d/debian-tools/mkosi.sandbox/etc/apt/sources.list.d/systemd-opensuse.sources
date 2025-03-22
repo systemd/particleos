@@ -1,0 +1,4 @@
+Types: deb
+URIs: http://download.opensuse.org/repositories/system:/systemd/Debian_Testing/
+Suites: /
+Signed-By: /usr/share/apt/keyrings/systemd-opensuse.gpg
