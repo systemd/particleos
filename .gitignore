@@ -3,6 +3,8 @@ mkosi.local/
 mkosi.local.conf
 mkosi.output/
 mkosi.cache/
+mkosi.tools/
+mkosi.tools.manifest
 mkosi.key
 mkosi.crt
 .mkosi-private
