@@ -35,7 +35,7 @@ git clone https://github.com/systemd/systemd
 cd systemd
 mkosi -f sandbox -- meson setup build
 mkosi -f sandbox -- meson compile -C build
-mkosi -t none
+mkosi -t none -f
 ```
 
 Then write the following to `mkosi.local.conf` in the ParticleOS repository to
