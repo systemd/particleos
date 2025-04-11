@@ -12,23 +12,48 @@ distribution is used as the base and which packages are installed into the
 image.
 
 The ParticleOS image is built using [mkosi](https://github.com/systemd/mkosi).
-To build the image, run `mkosi -d <distribution> --profile <profile> -f` from the ParticleOS
-repository. Currently both `arch` and `fedora` are supported distributions.
-Implementing support for a new distribution (that's already supported in mkosi)
-is as simple as writing the necessary config files to install the required
-packages for that distribution. Optionally, profiles can be selected to add a set of packages,
-currently `desktop,kde` and `desktop,gnome` are supported.
+
+First, configure the variant you'd like to build in `mkosi.local.conf`. For a
+desktop system, you'll want the `desktop` profile and either the `gnome` or the
+`kde` profile.
+
+```conf
+[Distribution]
+Distribution=arch
+
+[Config]
+Profiles=desktop,kde
+```
+
+To build the image, run `mkosi -f` from the ParticleOS repository. Currently
+both `arch` and `fedora` are supported distributions. Implementing support for a
+new distribution (that's already supported in mkosi) is as simple as writing the
+necessary config files to install the required packages for that distribution.
 
 To update the system after installation, you clone the ParticleOS repository
-or your fork of it and run `mkosi -ff sysupdate -- update --reboot` which will
-update the system using `systemd-sysupdate` and then reboot.
+or your fork of it, make sure `mkosi.local.conf` is configured to your liking and
+run `mkosi -ff sysupdate -- update --reboot` which will update the system using
+`systemd-sysupdate` and then reboot.
+
+## Using the OBS profile to fetch a newer systemd
+
+Sometimes ParticleOS adopts systemd features as soon as they get merged into
+systemd without waiting for an official release. That's why we recommend
+enabling the `obs` profile to enable the systemd repositories on OBS
+(https://software.opensuse.org//download.html?project=system%3Asystemd&package=systemd)
+containing systemd packages which are built every day from systemd's git main
+branch.
+
+To enable the `obs` profile, add the following to `mkosi.local.conf`:
+
+```conf
+[Config]
+Profiles=obs
+```
 
 ## Building systemd from source
 
-Sometimes ParticleOS adopts systemd features as soon as they get merged into
-systemd without waiting for an official release. As a result it's recommended to
-build systemd from source when building ParticleOS to make sure all required
-features are supported:
+As an alternative to using the `obs` profile, you can build systemd from source:
 
 ```sh
 git clone https://github.com/systemd/systemd
