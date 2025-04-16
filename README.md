@@ -25,14 +25,14 @@ Distribution=arch
 Profiles=desktop,kde
 ```
 
-To build the image, run `mkosi -f` from the ParticleOS repository. Currently
+To build the image, run `mkosi -B -f` from the ParticleOS repository. Currently
 both `arch` and `fedora` are supported distributions. Implementing support for a
 new distribution (that's already supported in mkosi) is as simple as writing the
 necessary config files to install the required packages for that distribution.
 
 To update the system after installation, you clone the ParticleOS repository
 or your fork of it, make sure `mkosi.local.conf` is configured to your liking and
-run `mkosi -ff sysupdate -- update --reboot` which will update the system using
+run `mkosi -B -ff sysupdate -- update --reboot` which will update the system using
 `systemd-sysupdate` and then reboot.
 
 ## Using the OBS profile to fetch a newer systemd
