@@ -12,6 +12,8 @@ distribution is used as the base and which packages are installed into the
 image.
 
 The ParticleOS image is built using [mkosi](https://github.com/systemd/mkosi).
+You will need to install a development version of mkosi to build current 
+ParticleOS images.
 
 First, configure the variant you'd like to build in `mkosi.local.conf`. For a
 desktop system, you'll want the `desktop` profile and either the `gnome` or the
