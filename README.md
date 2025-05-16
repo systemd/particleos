@@ -141,15 +141,12 @@ run the following to configure systemd-homed for the best experience:
 homectl update \
     --auto-resize-mode=off \
     --disk-size=max \
-    --luks-discard=on \
-    --luks-extra-mount-options "user_subvol_rm_allowed,compress=zstd:1"
+    --luks-discard=on"
 ```
 
 Disabling the auto resize mode avoids slow system boot and shutdown. Enabling
 LUKS discard makes sure the home directory doesn't become inaccessible because
-systemd-homed is unable to resize the home directory. The extra LUKS mount
-options are BTRFS mount options to make image builds with `mkosi` faster by
-compressing data on disk and allowing users to delete subvolumes.
+systemd-homed is unable to resize the home directory.
 
 ## Default root password and user when booting in a virtual machine
 
