@@ -5,8 +5,12 @@ rm -f "$BUILDROOT/usr/lib/tmpfiles.d/arch.conf"
 rm -f "$BUILDROOT/usr/lib/tmpfiles.d/audit.conf"
 rm -f "$BUILDROOT/usr/lib/tmpfiles.d/openssh.conf"
 
-mkdir "$BUILDROOT/usr/lib/pacman"
-mv "$BUILDROOT/var/lib/pacman/local" "$BUILDROOT/usr/lib/pacman"
+mkdir -p "$BUILDROOT/usr/lib/pacman"
+if [ -d "$BUILDROOT/var/lib/pacman/local" ]; then
+    mv "$BUILDROOT/var/lib/pacman/local" "$BUILDROOT/usr/lib/pacman"
+fi
 
-rm "$BUILDROOT/usr/lib/pcsc/drivers/ifd-ccid.bundle/Contents/Info.plist"
-mv "$BUILDROOT/etc/libccid_Info.plist" "$BUILDROOT/usr/lib/pcsc/drivers/ifd-ccid.bundle/Contents/Info.plist"
+rm -f "$BUILDROOT/usr/lib/pcsc/drivers/ifd-ccid.bundle/Contents/Info.plist"
+if [ -f "$BUILDROOT/etc/libccid_Info.plist" ]; then
+    mv "$BUILDROOT/etc/libccid_Info.plist" "$BUILDROOT/usr/lib/pcsc/drivers/ifd-ccid.bundle/Contents/Info.plist"
+fi
