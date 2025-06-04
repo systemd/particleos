@@ -12,6 +12,8 @@ distribution is used as the base and which packages are installed into the
 image.
 
 The ParticleOS image is built using [mkosi](https://github.com/systemd/mkosi).
+You will need to install the current main branch of mkosi to build current 
+ParticleOS images.
 
 First, configure the variant you'd like to build in `mkosi.local.conf`. For a
 desktop system, you'll want the `desktop` profile and either the `gnome` or the
@@ -141,15 +143,12 @@ run the following to configure systemd-homed for the best experience:
 homectl update \
     --auto-resize-mode=off \
     --disk-size=max \
-    --luks-discard=on \
-    --luks-extra-mount-options "user_subvol_rm_allowed,compress=zstd:1"
+    --luks-discard=on"
 ```
 
 Disabling the auto resize mode avoids slow system boot and shutdown. Enabling
 LUKS discard makes sure the home directory doesn't become inaccessible because
-systemd-homed is unable to resize the home directory. The extra LUKS mount
-options are BTRFS mount options to make image builds with `mkosi` faster by
-compressing data on disk and allowing users to delete subvolumes.
+systemd-homed is unable to resize the home directory.
 
 ## Default root password and user when booting in a virtual machine
 
