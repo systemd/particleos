@@ -7,6 +7,3 @@ rm -f "$BUILDROOT/usr/lib/tmpfiles.d/openssh.conf"
 
 mkdir "$BUILDROOT/usr/lib/pacman"
 mv "$BUILDROOT/var/lib/pacman/local" "$BUILDROOT/usr/lib/pacman"
-
-rm "$BUILDROOT/usr/lib/pcsc/drivers/ifd-ccid.bundle/Contents/Info.plist"
-mv "$BUILDROOT/etc/libccid_Info.plist" "$BUILDROOT/usr/lib/pcsc/drivers/ifd-ccid.bundle/Contents/Info.plist"
