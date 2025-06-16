@@ -28,7 +28,7 @@ Profiles=desktop,kde
 ```
 
 To build the image, run `mkosi -B -f` from the ParticleOS repository. Currently
-both `arch` and `fedora` are supported distributions. Implementing support for a
+`arch`, `fedora` and `debian` are supported distributions. Implementing support for a
 new distribution (that's already supported in mkosi) is as simple as writing the
 necessary config files to install the required packages for that distribution.
 
