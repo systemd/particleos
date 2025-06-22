@@ -1,0 +1,15 @@
+[Transfer]
+ProtectVersion=%A
+
+[Source]
+Type=url-file
+Path=https://download.opensuse.org/repositories/system:/systemd/debian_testing_images/
+MatchPattern=ParticleOS_@v_%a.usr-%a.@u.raw.zst
+
+[Target]
+Type=partition
+Path=auto
+MatchPattern=ParticleOS_@v
+MatchPartitionType=usr
+PartitionFlags=0
+ReadOnly=1
