@@ -1,0 +1,4 @@
+# apt gets pulled in, but with /usr read-only doesn't make sense to run updates
+disable apt-daily.timer
+disable apt-daily-upgrade.timer
+disable apt-listchanges.timer
