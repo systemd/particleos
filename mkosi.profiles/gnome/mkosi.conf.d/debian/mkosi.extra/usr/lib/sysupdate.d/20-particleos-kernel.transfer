@@ -1,0 +1,19 @@
+[Transfer]
+ProtectVersion=%A
+
+[Source]
+Type=url-file
+Path=https://download.opensuse.org/repositories/home:/bluca:/branches:/home:/bluca:/systemd/Debian_Testing_images/
+MatchPattern=ParticleOS_@v_%a.efi
+
+[Target]
+Type=regular-file
+Path=/EFI/Linux
+PathRelativeTo=boot
+MatchPattern=ParticleOS_@v_%a+@l-@d.efi \
+  ParticleOS_@v_%a+@l.efi \
+  ParticleOS_@v_%a.efi
+Mode=0644
+TriesLeft=3
+TriesDone=0
+InstancesMax=2
