@@ -1,0 +1,3 @@
+# Disabled by default in the package
+disable speech-dispatcherd.service
+
