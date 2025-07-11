@@ -1,0 +1,8 @@
+# SPDX-License-Identifier: LGPL-2.1-or-later
+
+# Disable networkd and enable network-manager, which has GUI integration
+disable systemd-networkd.service
+disable systemd-networkd.socket
+disable systemd-networkd-wait-online.service
+enable NetworkManager.service
+enable NetworkManager-wait-online.service
