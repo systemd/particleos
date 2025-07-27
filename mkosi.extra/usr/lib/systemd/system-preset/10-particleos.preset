@@ -34,3 +34,6 @@ disable ssh.service
 enable sshd.socket
 enable ssh.socket
 enable sshd-keygen.service
+
+# Enable monthly btrfs scrubbing for root and home
+enable btrfs-scrub@.timer - home home-particleos
