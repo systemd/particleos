@@ -4,6 +4,9 @@ ParticleOS is a fully customizable immutable distribution implementing the
 concepts described in
 [Fitting Everything Together](https://0pointer.net/blog/fitting-everything-together.html).
 
+Note that ParticleOS is still in development, and we don't provide any backwards
+compatibility guarantees at all.
+
 The crucial difference that makes ParticleOS unique compared to other immutable
 distributions is that users build the ParticleOS image themselves and sign it
 with their own keys instead of installing vendor signed images. This allows
