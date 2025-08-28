@@ -1,0 +1,14 @@
+# SPDX-License-Identifier: LGPL-2.1-or-later
+# TODO: drop once https://gitlab.freedesktop.org/accountsservice/accountsservice/-/issues/89 is fixed
+
+[Unit]
+Description=Tell the accounts service about homed users
+After=systemd-homed.service accounts-daemon.service
+Before=systemd-user-sessions.service
+
+[Service]
+Type=oneshot
+ExecStart=/bin/bash -c "for n in $$(busctl call org.freedesktop.home1 /org/freedesktop/home1 org.freedesktop.home1.Manager ListHomes --json=pretty | jq -r '.data.[].[].[0]'); do busctl call org.freedesktop.Accounts /org/freedesktop/Accounts org.freedesktop.Accounts CacheUser s $$n; done"
+
+[Install]
+WantedBy=multi-user.target
