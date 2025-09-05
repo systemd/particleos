@@ -1,0 +1,9 @@
+#!/bin/bash
+# SPDX-License-Identifier: LGPL-2.1-or-later
+
+rm -f "$BUILDROOT/usr/lib/tmpfiles.d/arch.conf"
+rm -f "$BUILDROOT/usr/lib/tmpfiles.d/audit.conf"
+rm -f "$BUILDROOT/usr/lib/tmpfiles.d/openssh.conf"
+
+mkdir "$BUILDROOT/usr/lib/pacman"
+mv "$BUILDROOT/var/lib/pacman/local" "$BUILDROOT/usr/lib/pacman"

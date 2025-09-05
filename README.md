@@ -4,6 +4,9 @@ ParticleOS is a fully customizable immutable distribution implementing the
 concepts described in
 [Fitting Everything Together](https://0pointer.net/blog/fitting-everything-together.html).
 
+Note that ParticleOS is still in development, and we don't provide any backwards
+compatibility guarantees at all.
+
 The crucial difference that makes ParticleOS unique compared to other immutable
 distributions is that users build the ParticleOS image themselves and sign it
 with their own keys instead of installing vendor signed images. This allows
@@ -12,6 +15,8 @@ distribution is used as the base and which packages are installed into the
 image.
 
 The ParticleOS image is built using [mkosi](https://github.com/systemd/mkosi).
+You will need to install the current main branch of mkosi to build current
+ParticleOS images.
 
 First, configure the variant you'd like to build in `mkosi.local.conf`. For a
 desktop system, you'll want the `desktop` profile and either the `gnome` or the
@@ -26,7 +31,7 @@ Profiles=desktop,kde
 ```
 
 To build the image, run `mkosi -B -f` from the ParticleOS repository. Currently
-both `arch` and `fedora` are supported distributions. Implementing support for a
+`arch`, `fedora` and `debian` are supported distributions. Implementing support for a
 new distribution (that's already supported in mkosi) is as simple as writing the
 necessary config files to install the required packages for that distribution.
 
@@ -141,15 +146,12 @@ run the following to configure systemd-homed for the best experience:
 homectl update \
     --auto-resize-mode=off \
     --disk-size=max \
-    --luks-discard=on \
-    --luks-extra-mount-options "user_subvol_rm_allowed,compress=zstd:1"
+    --luks-discard=on"
 ```
 
 Disabling the auto resize mode avoids slow system boot and shutdown. Enabling
 LUKS discard makes sure the home directory doesn't become inaccessible because
-systemd-homed is unable to resize the home directory. The extra LUKS mount
-options are BTRFS mount options to make image builds with `mkosi` faster by
-compressing data on disk and allowing users to delete subvolumes.
+systemd-homed is unable to resize the home directory.
 
 ## Default root password and user when booting in a virtual machine
 

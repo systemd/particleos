@@ -1,0 +1,9 @@
+#!/bin/bash
+# SPDX-License-Identifier: LGPL-2.1-or-later
+set -e
+
+# Debian/Ubuntu PAM patches break /usr/lib/pam.d/ so copy to factory
+# TODO: drop after https://salsa.debian.org/vorlon/pam/-/merge_requests/26 is merged
+if [[ -f /usr/lib/tmpfiles.d/debian.conf ]]; then
+    sed -i '/\/etc\/pam.d/d' /usr/lib/tmpfiles.d/debian.conf
+fi
