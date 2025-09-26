@@ -4,7 +4,6 @@
 enable systemd-networkd.service
 enable systemd-networkd.socket
 enable systemd-networkd-varlink.socket
-enable systemd-networkd-wait-online.service
 enable systemd-resolved.service
 
 # Enable NetworkManager as well for desktop environments. systemd-networkd won't
