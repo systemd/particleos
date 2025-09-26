@@ -1,0 +1,7 @@
+# networkd is disabled in the desktop flavour, but we need it in the initrd
+# for the netboot DDI case, as we don't want to pull network-manager in the
+# initrd
+enable systemd-networkd.service
+enable systemd-networkd.socket
+enable systemd-networkd-varlink.socket
+enable systemd-networkd-wait-online.service
