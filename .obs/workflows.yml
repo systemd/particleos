@@ -1,0 +1,13 @@
+rebuild:
+  steps:
+    - trigger_services:
+        project: system:systemd
+        package: particleos-debian
+    - trigger_services:
+        project: system:systemd
+        package: particleos-fedora
+  filters:
+    event: push
+    branches:
+      only:
+        - obs
