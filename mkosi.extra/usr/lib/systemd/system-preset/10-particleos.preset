@@ -4,6 +4,8 @@
 # Note that this gets overridden in the desktop preset as networkd
 # has no interfaces to manage and so this will fail on boot
 # and block other units waiting on network-online.target
+# But it is enabled in the initrd for desktops too, as it is needed
+# for the netboot DDI case
 enable systemd-networkd.service
 enable systemd-networkd.socket
 enable systemd-networkd-varlink.socket
