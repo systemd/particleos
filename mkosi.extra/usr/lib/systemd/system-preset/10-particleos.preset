@@ -1,6 +1,9 @@
 # SPDX-License-Identifier: LGPL-2.1-or-later
 
 # Make sure we have networking available.
+# Note that this gets overridden in the desktop preset as networkd
+# has no interfaces to manage and so this will fail on boot
+# and block other units waiting on network-online.target
 enable systemd-networkd.service
 enable systemd-networkd.socket
 enable systemd-networkd-varlink.socket
