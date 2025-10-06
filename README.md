@@ -102,6 +102,30 @@ VerityKey=pkcs11:object=Private key 1;type=private
 VerityKeySource=provider:pkcs11
 ```
 
+## Prebuilt images
+
+ParticleOS images are built on the [Open Build Service](https://download.opensuse.org/repositories/system:/systemd/)
+and can be downloaded and installed. Currently x86-64 GNOME flavours of Fedora and
+Debian are provided and can be found in the respective "images" directory at the
+aforementioned link.
+
+The sources can be found in the `obs` branch of this repository, and the build
+configuration can be found in the [system:systemd project](https://build.opensuse.org/project/show/system:systemd)
+on OBS. These images will contain systemd built from latest git main, rather
+than what the respective distributions provide.
+
+The trust model of these images is as follows: any private key material used
+to sign the images is handled automatically and securely by OBS, and is not
+available to the project maintainers. The [OBS signing certificate](https://build.opensuse.org/projects/system:systemd/signing_keys)
+for the `system:systemd` project and the MSFT 3rd party 2011 and 2023 CAs
+are set up to be self-enrolled for UEFI secure boot if the system is booted
+in setup mode. The OBS PGP public key is enrolled in the `systemd-sysupdate`
+preinstalled keyring, and `sysupdate.d` configuration is preinstalled to
+automatically pull updates from OBS. The UKI is signed (both the image itself
+and the PCR policies contained within) with the OBS `system:systemd` project
+certificate as well. The dm-verity partitions are signed with the same key
+as well.
+
 ## Installation
 
 Before installing ParticleOS, make sure that Secure Boot is in setup mode on the
