@@ -25,8 +25,8 @@ enable power-profiles-daemon.service
 # Our own service to run systemctl preset --global.
 enable preset-global.service
 
-# Should be enabled manually by the user after first boot.
-disable gdm.service
+enable gdm.service
+enable sddm.service
 
 # Prefer socket activated SSH over daemon SSH
 disable sshd.service
