@@ -1,0 +1,7 @@
+[Base_System]
+name=Base:System Factory Devel Project (openSUSE_Tumbleweed)
+type=rpm-md
+baseurl=https://download.opensuse.org/repositories/system:/systemd/openSUSE_Tumbleweed/
+gpgcheck=0
+gpgkey=https://download.opensuse.org/repositories/systemd:/systemd/openSUSE_Tumbleweed/repodata/repomd.xml.key
+enabled=1
