@@ -10,3 +10,6 @@ charset = utf-8
 [*.conf]
 indent_style = space
 indent_size = 4
+
+[mkosi.passphrase]
+insert_final_newline = false

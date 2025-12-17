@@ -5,6 +5,9 @@ rebuild:
         package: particleos-debian
     - trigger_services:
         project: system:systemd
+        package: particleos-debian-arm
+    - trigger_services:
+        project: system:systemd
         package: particleos-fedora
   filters:
     event: push
