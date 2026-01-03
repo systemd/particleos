@@ -30,6 +30,9 @@ Distribution=arch
 Profiles=desktop,kde
 ```
 
+It is also strongly recommended to write a hashed root password prefixed with
+`hashed:` to `mkosi.rootpw` to allow debugging the system if something breaks.
+
 To build the image, run `mkosi -B -f` from the ParticleOS repository. Currently
 `arch`, `fedora` and `debian` are supported distributions. Implementing support for a
 new distribution (that's already supported in mkosi) is as simple as writing the
