@@ -173,7 +173,7 @@ run the following to configure systemd-homed for the best experience:
 homectl update \
     --auto-resize-mode=off \
     --disk-size=max \
-    --luks-discard=on"
+    --luks-discard=on
 ```
 
 Disabling the auto resize mode avoids slow system boot and shutdown. Enabling
@@ -185,3 +185,4 @@ systemd-homed is unable to resize the home directory.
 If you boot ParticleOS in a virtual machine using `mkosi vm`, the root password
 is automatically set to `particleos` and a default user `particleos` with password
 `particleos` is created as well.
+For testing in a virtual machine see the [TESTING.md](docs/TESTING.md) document.
