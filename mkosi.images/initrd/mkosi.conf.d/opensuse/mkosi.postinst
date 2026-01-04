@@ -1,0 +1,6 @@
+#!/bin/bash
+# SPDX-License-Identifier: LGPL-2.1-or-later
+
+# By default erofs is blacklisted in openSUSE and UKIs use erofs for the usrfs
+# we need to remove the blacklist to be able to mount erofs usrfs
+ln -sf /dev/null "$BUILDROOT/usr/lib/modprobe.d/60-blacklist_fs-erofs.conf"
