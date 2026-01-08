@@ -1,0 +1,7 @@
+[system_systemd]
+name=system:systemd Project (openSUSE_Tumbleweed)
+type=rpm-md
+baseurl=https://download.opensuse.org/repositories/system:/systemd/openSUSE_Tumbleweed
+gpgcheck=1
+gpgkey=file:///usr/share/pki/rpm-gpg/systemd.gpg
+enabled=1
