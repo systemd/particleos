@@ -20,7 +20,7 @@ ParticleOS images.
 
 First, configure the variant you'd like to build in `mkosi.local.conf`. For a
 desktop system, you'll want the `desktop` profile and either the `gnome` or the
-`kde` profile.
+`kde` profile, and `flatpak` to install applications. For NVIDIA support (Turing and newer) on Arch Linux, add `nvidia`.
 
 ```conf
 [Distribution]
@@ -48,7 +48,7 @@ run `mkosi -B -ff sysupdate -- update --reboot` which will update the system usi
 Sometimes ParticleOS adopts systemd features as soon as they get merged into
 systemd without waiting for an official release. That's why we recommend
 enabling the `obs` profile to enable the systemd repositories on OBS
-(https://software.opensuse.org//download.html?project=system%3Asystemd&package=systemd)
+(<https://software.opensuse.org//download.html?project=system%3Asystemd&package=systemd>)
 containing systemd packages which are built every day from systemd's git main
 branch.
 
@@ -86,7 +86,7 @@ Make sure the distribution and release in `mkosi.local.conf` are identical in th
 systemd checkout and the particleos checkout.
 
 To build a newer systemd, run `git pull` in the systemd repository followed by
- `mkosi -f sandbox -- meson compile -C build` and `mkosi -t none`.
+`mkosi -f sandbox -- meson compile -C build` and `mkosi -t none`.
 
 ## Signing keys
 
