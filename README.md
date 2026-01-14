@@ -23,11 +23,19 @@ desktop system, you'll want the `desktop` profile and either the `gnome` or the
 `kde` profile.
 
 ```conf
+[Config]
+Profiles=desktop,kde
+```
+
+When building for a different distribution than the one you are currently running,
+you must also specify the distribution and include the required tools:
+
+```conf
 [Distribution]
 Distribution=arch
 
-[Config]
-Profiles=desktop,kde
+[Build]
+ToolsTreeProfiles=package-manager
 ```
 
 It is also strongly recommended to write a hashed root password prefixed with
