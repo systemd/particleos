@@ -22,6 +22,10 @@ disable avahi.*
 # Enable support for smart card readers
 enable pcscd.service
 
+# Enable tuned for power management
+enable tuned.service
+enable tuned-ppd.service
+
 # Our own service to run systemctl preset --global.
 enable preset-global.service
 
