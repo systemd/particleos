@@ -173,7 +173,7 @@ run the following to configure systemd-homed for the best experience:
 homectl update \
     --auto-resize-mode=off \
     --disk-size=max \
-    --luks-discard=on"
+    --luks-discard=on
 ```
 
 Disabling the auto resize mode avoids slow system boot and shutdown. Enabling
