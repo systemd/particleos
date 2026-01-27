@@ -1,0 +1,8 @@
+# SPDX-License-Identifier: LGPL-2.1-or-later
+
+# Make sure to enable the nvidia services.
+enable nvidia-hibernate.service
+enable nvidia-powerd.service
+enable nvidia-resume.service
+enable nvidia-suspend.service
+enable nvidia-suspend-then-hibernate.service
