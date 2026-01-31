@@ -2,7 +2,6 @@
 
 # Make sure we have networking available.
 enable systemd-networkd.service
-enable systemd-networkd.socket
 enable systemd-networkd-wait-online.service
 enable systemd-resolved.service
 
