@@ -47,21 +47,21 @@ run `mkosi -B -ff sysupdate -- update --reboot` which will update the system usi
 
 Sometimes ParticleOS adopts systemd features as soon as they get merged into
 systemd without waiting for an official release. That's why we recommend
-enabling the `obs` profile to enable the systemd repositories on OBS
+enabling the `obs-repos` profile to enable the systemd repositories on OBS
 (https://software.opensuse.org//download.html?project=system%3Asystemd&package=systemd)
 containing systemd packages which are built every day from systemd's git main
 branch.
 
-To enable the `obs` profile, add the following to `mkosi.local.conf`:
+To enable the `obs-repos` profile, add the following to `mkosi.local.conf`:
 
 ```conf
 [Config]
-Profiles=obs
+Profiles=obs-repos
 ```
 
 ## Building systemd from source
 
-As an alternative to using the `obs` profile, you can build systemd from source:
+As an alternative to using the `obs-repos` profile, you can build systemd from source:
 
 ```sh
 git clone https://github.com/systemd/systemd
