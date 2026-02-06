@@ -1,0 +1,15 @@
+[Transfer]
+ProtectVersion=%A
+
+[Source]
+Type=url-file
+Path=https://download.opensuse.org/repositories/system:/systemd:/stable/%o_%w_images/
+MatchPattern=ParticleOS_@v_%a.usr-%a-verity.@u.raw.zst
+
+[Target]
+Type=partition
+Path=auto
+MatchPattern=ParticleOS_@v_verity
+MatchPartitionType=usr-verity
+PartitionFlags=0
+ReadOnly=1
