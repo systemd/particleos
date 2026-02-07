@@ -59,6 +59,16 @@ To enable the `obs-repos` profile, add the following to `mkosi.local.conf`:
 Profiles=obs-repos
 ```
 
+We also provide the `obs-repos-stable` profile, that will use the latest stable
+branch of systemd, instead of main, providing more stability and less risk, as
+it is what distributions typically use. To enable this profile, add the
+following to `mkosi.local.conf`:
+
+```conf
+[Config]
+Profiles=obs-repos-stable
+```
+
 ## Building systemd from source
 
 As an alternative to using the `obs-repos` profile, you can build systemd from source:
@@ -151,6 +161,11 @@ The sources can be found in the `obs` branch of this repository, and the build
 configuration can be found in the [system:systemd project](https://build.opensuse.org/project/show/system:systemd)
 on OBS. These images will contain systemd built from latest git main, rather
 than what the respective distributions provide.
+
+Images built using the latest systemd stable branch, instead of main, are also
+provided, in the [system:systemd:stable project](https://build.opensuse.org/project/show/system:systemd:stable)
+project on OBS. The ParticleOS configuration is the same, the only difference is
+the systemd packages, which should be safer and more stable to use.
 
 The trust model of these images is as follows: any private key material used
 to sign the images is handled automatically and securely by OBS, and is not
