@@ -23,11 +23,19 @@ desktop system, you'll want the `desktop` profile and either the `gnome` or the
 `kde` profile.
 
 ```conf
+[Config]
+Profiles=desktop,kde
+```
+
+When building for a different distribution than the one you are currently running,
+you must also specify the distribution and include the required tools:
+
+```conf
 [Distribution]
 Distribution=arch
 
-[Config]
-Profiles=desktop,kde
+[Build]
+ToolsTreeProfiles=package-manager
 ```
 
 It is also strongly recommended to write a hashed root password prefixed with
@@ -195,7 +203,7 @@ Linux system as described above. Then, burn it to the USB drive with
 the system onto which you'd like to install ParticleOS and boot into the USB
 drive via the firmware. Then, boot into the "Installer" UKI profile. When you
 end up in the root shell, run
-`systemd-repart --dry-run=no --empty=force --defer-partitions=swap,root,home /dev/<drive>`
+`systemd-repart --dry-run=no --empty=force --defer-partitions-factory-reset yes /dev/<drive>`
 to install ParticleOS to the system's drive. Finally, reboot into the target
 drive (not the USB) and the regular profile (not the installer one) to complete
 the installation.
