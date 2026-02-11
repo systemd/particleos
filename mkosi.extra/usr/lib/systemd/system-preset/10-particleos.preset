@@ -18,8 +18,12 @@ enable systemd-homed-firstboot.service
 # Disable avahi in favor of resolved
 disable avahi.*
 
+# Enable support for smart card readers
 enable pcscd.service
-enable power-profiles-daemon.service
+
+# Enable tuned for power management
+enable tuned.service
+enable tuned-ppd.service
 
 # Our own service to run systemctl preset --global.
 enable preset-global.service
