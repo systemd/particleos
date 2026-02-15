@@ -21,3 +21,32 @@ find /usr/lib/pam.d/ -mindepth 1 -exec sed --in-place '/pam_securetty.so/d' {} \
 if [[ -f /usr/lib/tmpfiles.d/20-systemd-userdb.conf.example ]]; then
     ln --symbolic 20-systemd-userdb.conf.example /usr/lib/tmpfiles.d/20-systemd-userdb.conf
 fi
+
+# Give ParticleOS its own identity/branding via os-release +
+# issue. Note that we keep the original $ID, $VERSION and $VERSION_ID
+# in place, so that we appear like the original underlying OS in most
+# programmatic ways. However, all "pretty"/"fancy" strings now claim
+# we are ParticleOS. Moreover, use $ID_LIKE to identify ParticleOs as
+# such in a programmatic way.
+(
+    . /usr/lib/os-release
+    cat >/usr/lib/os-release <<EOF
+NAME="ParticleOS ($NAME Flavour)"
+ID="$ID"
+ID_LIKE="particleos-$ID"
+PRETTY_NAME="ParticleOS/$NAME $VERSION"
+FANCY_NAME="\033[0;38:2:252:186:3;1;49m⸭\033[0;38:2:252:186:3;49m ParticleOS/$NAME Flavour $VERSION\033[0m"
+VERSION="$VERSION"
+VERSION_ID="$VERSION_ID"
+ANSI_COLOR="38:2:252:186:3;1;49"
+ANSI_COLOR_REVERSE="48;2;252;186;3;1;30"
+DEFAULT_HOSTNAME="particle-????-????"
+HOME_URL="https://github.com/systemd/particleos/"
+EOF
+
+    cat >/usr/lib/issue <<EOF
+\e[0;38:2:252:186:3;1;49m▒\e[0m \e[0;38:2:252:186:3;1;49m⸭\e[0;38:2:252:186:3;49m ParticleOS/$NAME Flavour $VERSION\e[0m
+\e[0;38:2:252:186:3;1;49m▒\e[0m Kernel \r on an \m (\l)
+
+EOF
+)
