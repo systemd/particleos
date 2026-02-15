@@ -21,3 +21,20 @@ find /usr/lib/pam.d/ -mindepth 1 -exec sed --in-place '/pam_securetty.so/d' {} \
 if [[ -f /usr/lib/tmpfiles.d/20-systemd-userdb.conf.example ]]; then
     ln --symbolic 20-systemd-userdb.conf.example /usr/lib/tmpfiles.d/20-systemd-userdb.conf
 fi
+
+# Give ParticleOS its own identity/branding via /etc/os-release
+(
+  . /usr/lib/os-release
+  cat > /usr/lib/os-release <<EOF
+NAME="ParticleOS ($NAME Flavour)"
+VERSION="$VERSION"
+VERSION_ID="$VERSION_ID"
+ID="particleos-$ID"
+ID_LIKE="$ID"
+PRETTY_NAME="ParticleOS ($NAME Flavour)"
+FANCY_NAME="\033[0;38:2:252:186:3;1;49m⸭\033[0;38:2:252:186:3;49m ParticleOS (Fedora Linux Flavour) 43 (Forty Three)\033[0m"
+ANSI_COLOR="38:2:252:186:3;1;49"
+ANSI_COLOR_REVERSE="48;2;252;186;3;1;30"
+DEFAULT_HOSTNAME="particle-????-????"
+EOF
+)
