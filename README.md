@@ -1,4 +1,4 @@
-# ParticleOS
+# ⸭ ParticleOS
 
 ParticleOS is a fully customizable immutable distribution implementing the
 concepts described in
