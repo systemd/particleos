@@ -9,6 +9,15 @@ rebuild:
     - trigger_services:
         project: system:systemd
         package: particleos-fedora
+    - trigger_services:
+        project: system:systemd:stable
+        package: particleos-debian
+    - trigger_services:
+        project: system:systemd:stable
+        package: particleos-debian-arm
+    - trigger_services:
+        project: system:systemd:stable
+        package: particleos-fedora
   filters:
     event: push
     branches:

@@ -1,4 +1,4 @@
-# ParticleOS
+# ⸭ ParticleOS
 
 ParticleOS is a fully customizable immutable distribution implementing the
 concepts described in
@@ -47,21 +47,31 @@ run `mkosi -B -ff sysupdate -- update --reboot` which will update the system usi
 
 Sometimes ParticleOS adopts systemd features as soon as they get merged into
 systemd without waiting for an official release. That's why we recommend
-enabling the `obs` profile to enable the systemd repositories on OBS
+enabling the `obs-repos` profile to enable the systemd repositories on OBS
 (https://software.opensuse.org//download.html?project=system%3Asystemd&package=systemd)
 containing systemd packages which are built every day from systemd's git main
 branch.
 
-To enable the `obs` profile, add the following to `mkosi.local.conf`:
+To enable the `obs-repos` profile, add the following to `mkosi.local.conf`:
 
 ```conf
 [Config]
-Profiles=obs
+Profiles=obs-repos
+```
+
+We also provide the `obs-repos-stable` profile, that will use the latest stable
+branch of systemd, instead of main, providing more stability and less risk, as
+it is what distributions typically use. To enable this profile, add the
+following to `mkosi.local.conf`:
+
+```conf
+[Config]
+Profiles=obs-repos-stable
 ```
 
 ## Building systemd from source
 
-As an alternative to using the `obs` profile, you can build systemd from source:
+As an alternative to using the `obs-repos` profile, you can build systemd from source:
 
 ```sh
 git clone https://github.com/systemd/systemd
@@ -105,6 +115,41 @@ VerityKey=pkcs11:object=Private key 1;type=private
 VerityKeySource=provider:pkcs11
 ```
 
+With a YubiKey you can generate a key and certificate in PIV:
+
+```sh
+ykman piv keys generate --algorithm RSA2048 9c pubkey.pem
+ykman piv certificates generate --subject "CN=mkosi" 9c pubkey.pem
+rm pubkey.pem
+pkcs11-tool --module /usr/lib/x86_64-linux-gnu/opensc-pkcs11.so --list-objects --type cert
+# Should print something like:
+Using slot 0 with a present token (0x0)
+Certificate Object; type = X.509 cert
+  label:      Certificate for Digital Signature
+  subject:    DN: CN=mkosi
+  serial:     ...
+  ID:         02
+  uri:        pkcs11:model=PKCS%2315%20emulated;manufacturer=piv_II;serial=...;token=mkosi;id=%02;object=Certificate%20for%20Digital%20Signature;type=cert
+```
+
+Then you have to set the key with the right token and key ID in `mkosi.local.conf`:
+
+```
+[Validation]
+SecureBootKey=pkcs11:token=mkosi;id=%%02;type=private
+SecureBootKeySource=provider:pkcs11
+SecureBootCertificate=pkcs11:token=mkosi;id=%%02;type=cert
+SecureBootCertificateSource=provider:pkcs11
+SignExpectedPcrKey=pkcs11:token=mkosi;id=%%02;type=private
+SignExpectedPcrKeySource=provider:pkcs11
+SignExpectedPcrCertificate=pkcs11:token=mkosi;id=%%02;type=cert
+SignExpectedPcrCertificateSource=provider:pkcs11
+VerityKey=pkcs11:token=mkosi;id=%%02;type=private
+VerityKeySource=provider:pkcs11
+VerityCertificate=pkcs11:token=mkosi;id=%%02;type=cert
+VerityCertificateSource=provider:pkcs11
+```
+
 ## Prebuilt images
 
 ParticleOS images are built on the [Open Build Service](https://download.opensuse.org/repositories/system:/systemd/)
@@ -116,6 +161,11 @@ The sources can be found in the `obs` branch of this repository, and the build
 configuration can be found in the [system:systemd project](https://build.opensuse.org/project/show/system:systemd)
 on OBS. These images will contain systemd built from latest git main, rather
 than what the respective distributions provide.
+
+Images built using the latest systemd stable branch, instead of main, are also
+provided, in the [system:systemd:stable project](https://build.opensuse.org/project/show/system:systemd:stable)
+project on OBS. The ParticleOS configuration is the same, the only difference is
+the systemd packages, which should be safer and more stable to use.
 
 The trust model of these images is as follows: any private key material used
 to sign the images is handled automatically and securely by OBS, and is not
