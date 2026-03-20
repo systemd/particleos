@@ -204,7 +204,7 @@ the installation.
 
 systemd doesn't support adding a recovery key to a partition enrolled with a token
 only (tpm/fido2). It is possible to use cryptenroll to add a recovery password
-to the root partition: `cryptsetup luksAddKey --token-type systemd-tpm2 /dev/<id>`
+to the root partition: `systemd-cryptenroll --unlock-tpm2-device auto --recovery-key /dev/disk/by-designator/root-luks`
 
 ## Firmwares
 
