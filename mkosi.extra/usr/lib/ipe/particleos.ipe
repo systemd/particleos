@@ -1,0 +1,11 @@
+policy_name=particleos policy_version=0.0.1
+DEFAULT action=DENY
+
+op=EXECUTE dmverity_signature=TRUE action=ALLOW
+op=KERNEL_MODULE dmverity_signature=TRUE action=ALLOW
+op=FIRMWARE_READ dmverity_signature=TRUE action=ALLOW
+op=FIRMWARE_READ boot_verified=TRUE action=ALLOW
+op=KEXEC_IMAGE dmverity_signature=TRUE action=ALLOW
+op=KEXEC_IMAGE boot_verified=TRUE action=ALLOW
+op=KEXEC_INITRAMFS dmverity_signature=TRUE action=ALLOW
+op=KEXEC_INITRAMFS boot_verified=TRUE action=ALLOW

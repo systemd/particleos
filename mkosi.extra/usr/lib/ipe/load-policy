@@ -1,0 +1,15 @@
+#!/bin/bash
+# SPDX-License-Identifier: LGPL-2.1-or-later
+set -euo pipefail
+
+IPE_DIR=/sys/kernel/security/ipe
+POLICY_FILE=/usr/lib/ipe/particleos.ipe
+POLICY_NAME=particleos
+
+if [[ ! -d "$IPE_DIR" ]]; then
+    echo "IPE securityfs not available, skipping policy load" >&2
+    exit 0
+fi
+
+cat "$POLICY_FILE" > "$IPE_DIR/new_policy"
+printf 1 > "$IPE_DIR/policies/$POLICY_NAME/active"

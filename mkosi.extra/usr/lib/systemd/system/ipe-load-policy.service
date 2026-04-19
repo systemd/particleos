@@ -1,0 +1,18 @@
+# SPDX-License-Identifier: LGPL-2.1-or-later
+
+[Unit]
+Description=Load IPE Security Policy
+Documentation=https://docs.kernel.org/admin-guide/LSM/ipe.html
+DefaultDependencies=no
+ConditionPathExists=/sys/kernel/security/ipe
+Before=basic.target
+Conflicts=shutdown.target
+Before=shutdown.target
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/usr/lib/ipe/load-policy
+
+[Install]
+WantedBy=basic.target
