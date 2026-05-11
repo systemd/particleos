@@ -181,24 +181,36 @@ as well.
 
 ## Installation
 
-Before installing ParticleOS, make sure that Secure Boot is in setup mode on the
-target system. The Secure Boot mode can be configured in the UEFI firmware
-interface of the target system. If there's an existing Linux installation on the
-target system already, run `systemctl reboot --firmware-setup` to reboot into
-the UEFI firmware interface. At the same time, make sure the UEFI firmware
-interface is password protected so an attacker cannot just disable Secure Boot
+Before installing ParticleOS, make sure that Secure Boot is in *setup*
+*mode* on the target system. The Secure Boot mode can be configured in
+the UEFI firmware interface of the target system. If there's an
+existing Linux installation on the target system already, run
+`systemctl reboot --firmware-setup` to reboot into the UEFI firmware
+interface. At the same time, make sure the UEFI firmware interface is
+password protected so an attacker cannot just disable Secure Boot
 again.
 
-To install ParticleOS with a USB drive, first build the image on an existing
-Linux system as described above. Then, burn it to the USB drive with
-`mkosi burn /dev/<usb>`. Once burned to the USB drive, plug the USB drive into
-the system onto which you'd like to install ParticleOS and boot into the USB
-drive via the firmware. Then, boot into the "Installer" UKI profile. When you
-end up in the root shell, run
-`systemd-repart --dry-run=no --empty=force --defer-partitions=swap,root,home /dev/<drive>`
-to install ParticleOS to the system's drive. Finally, reboot into the target
-drive (not the USB) and the regular profile (not the installer one) to complete
-the installation.
+To install ParticleOS with a USB drive, first build the image on an
+existing Linux system as described above. Then, write it to the USB
+drive with `mkosi burn /dev/<usb>`. Once written to the USB drive, plug
+the USB drive into the system onto which you'd like to install
+ParticleOS and boot into the USB drive via the firmware menu. Then,
+boot into the "Installer" UKI profile, which runs
+`systemd-sysinstall`. It will prompt for the target drive and any
+other details required, then partition the disk, copy ParticleOS onto
+it, set up the ESP via `bootctl install` and finally install a kernel
+via `bootctl link`. Once it completes, reboot into the target drive
+(i.e not the USB drive) and the default profile (i.e. not the
+installer one) to complete the installation.
+
+If you prefer to drive the install manually, boot into the "Live
+System" UKI profile instead. When you end up in the root shell, run
+`systemd-sysinstall` to install ParticleOS to the system's drive,
+then reboot as above. If you invoke `systemd-sysinstall` without
+arguments it will interactively query you for configuration
+parameters, as necessary. You may alternatively configure the new
+installation with command line parameters of the tool, see the
+systemd-sysinstall(8) man page for details.
 
 ## LUKS recovery key
 
