@@ -19,8 +19,8 @@ You will need to install the current main branch of mkosi to build current
 ParticleOS images.
 
 First, configure the variant you'd like to build in `mkosi.local.conf`. For a
-desktop system, you'll want the `desktop` profile and either the `gnome` or the
-`kde` profile.
+desktop system, you'll want the `desktop` and one of `gnome`, `kde`, or
+`sway` profiles.
 
 ```conf
 [Distribution]
