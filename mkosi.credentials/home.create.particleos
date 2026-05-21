@@ -5,6 +5,7 @@
     "disposition": "regular",
     "enforcePasswordPolicy": false,
     "memberOf": [
+        "sudo",
         "wheel",
         "systemd-journal"
     ],
