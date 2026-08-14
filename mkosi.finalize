@@ -7,3 +7,11 @@ set -e
 mkdir -p "$BUILDROOT/usr/share/factory/"
 cp --archive --no-target-directory --update=none "$BUILDROOT/etc" "$BUILDROOT/usr/share/factory/etc"
 ln -sr "$BUILDROOT/usr" "$BUILDROOT/usr/share/factory/usr"
+
+# The image only ships /usr, so the dpkg database in /var/lib/ would be lost.
+# Move it to the factory as well, from where tmpfiles symlinks it back to
+# /var/lib/dpkg. On Fedora the rpm database already lives in /usr.
+if [ -d "$BUILDROOT/var/lib/dpkg" ]; then
+    mkdir -p "$BUILDROOT/usr/share/factory/var/lib"
+    mv "$BUILDROOT/var/lib/dpkg" "$BUILDROOT/usr/share/factory/var/lib/dpkg"
+fi
