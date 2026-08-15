@@ -2,3 +2,14 @@
 disable apt-daily.timer
 disable apt-daily-upgrade.timer
 disable apt-listchanges.timer
+
+# Debian enables units from the packages' postinst instead of through presets,
+# so preset-all falls back to systemd's "enable" default and switches on a lot
+# more than a Debian installation would have.
+
+# sysv compat dummy unit, fails on every boot without /etc/openvpn
+disable openvpn.service
+# rsync daemon
+disable rsync.service
+# cloud metadata service
+disable systemd-imdsd.socket
