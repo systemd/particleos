@@ -242,7 +242,22 @@ Disabling the auto resize mode avoids slow system boot and shutdown. Enabling
 LUKS discard makes sure the home directory doesn't become inaccessible because
 systemd-homed is unable to resize the home directory.
 
-## Default root password and user when booting in a virtual machine
+## Booting ParticleOS in a virtual machine
+
+To boot the image in a virtual machine run `mkosi vm` which copies the build image
+and boots it. Every boot is first boot in this case. To persist the machine state
+use `systemd-vmspawn`. 
+
+```sh
+mkdir -p "$PWD/.vm-state/tpm"
+./mkosi/bin/mkosi box -- \
+    systemd-vmspawn \
+        --image="$PWD/image.raw" \
+        --grow-image=20G \
+        --tpm=yes \
+        --tpm-state="$PWD/.vm-state/tpm" \
+        --efi-nvram-state="$PWD/.vm-state/efivars"
+```
 
 If you boot ParticleOS in a virtual machine using `mkosi vm`, the root password
 is automatically set to `particleos` and a default user `particleos` with password
