@@ -1,0 +1,2 @@
+# Enable Avahi for Cups
+enable avahi-daemon.service
