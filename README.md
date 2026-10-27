@@ -34,9 +34,11 @@ It is also strongly recommended to write a hashed root password prefixed with
 `hashed:` to `mkosi.rootpw` to allow debugging the system if something breaks.
 
 To build the image, run `mkosi -B -f` from the ParticleOS repository. Currently
-`arch`, `fedora` and `debian` are supported distributions. Implementing support for a
-new distribution (that's already supported in mkosi) is as simple as writing the
-necessary config files to install the required packages for that distribution.
+`arch`, `fedora`, `debian` and `ubuntu` are supported distributions.
+
+Implementing support for a new distribution (that's already supported in mkosi)
+is as simple as writing the necessary config files to install the required
+packages for that distribution.
 
 To update the system after installation, you clone the ParticleOS repository
 or your fork of it, make sure `mkosi.local.conf` is configured to your liking and
