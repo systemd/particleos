@@ -5,9 +5,6 @@ rebuild:
         package: particleos-arch
     - trigger_services:
         project: system:systemd
-        package: particleos-debian
-    - trigger_services:
-        project: system:systemd
         package: particleos-fedora
     - trigger_services:
         project: system:systemd
@@ -18,9 +15,6 @@ rebuild:
     - trigger_services:
         project: system:systemd:stable
         package: particleos-arch
-    - trigger_services:
-        project: system:systemd:stable
-        package: particleos-debian
     - trigger_services:
         project: system:systemd:stable
         package: particleos-fedora
