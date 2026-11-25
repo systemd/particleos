@@ -4,7 +4,13 @@ set -e
 
 if command -v authselect >/dev/null; then
     authselect select local
-    authselect enable-feature with-systemd-homed
+    ## comment out systemd-homed support
+    # The upstream version of authselect shipped by Alma and CentOS has homed
+    # support. But both distros patch it out since they don't ship homed
+    # itself.
+    # https://gitlab.com/redhat/centos-stream/rpms/authselect/-/blob/c10s/0903-rhel10-remove-systemd-resolved.patch?ref_type=heads
+    # https://git.almalinux.org/rpms/authselect/src/branch/c10/0903-rhel10-remove-systemd-resolved.patch
+    #authselect enable-feature with-systemd-homed
 fi
 
 if [[ -d /etc/pam.d ]]; then
